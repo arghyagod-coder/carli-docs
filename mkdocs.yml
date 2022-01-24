@@ -1,0 +1,51 @@
+site_name: Create your Own Operating System Easily!
+repo_url: https://github.com/arghyagod-coder/carli-docs
+repo_name: arghyagod-coder/carli-docs
+site_description: "A detailed user guide to a CalinixOS user, which takes you through the walls and cores of the OS as a user"
+site_author: "Arghya Sarkar, Founder and Lead of Calinix Project"
+copyright: "Copyright © The Calinix Project 2021"
+
+
+nav:
+    - Start Here:
+      - 'index.md'
+      - 'distributions.md'
+    - Phase 1:
+      - 'p1/intro.md'
+      - 'p1/installm.md'
+
+
+remote_name: origin
+
+extra:
+  homepage: https://arcolinuxiso.com
+
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+
+
+theme:
+  name: material
+  features:
+    - search.suggest
+    - search.highlight
+  language: en
+  logo: assets/720x720_white.png
+  favicon: assets/720x720_white.png
+  palette:
+    - scheme: default
+      primary: black
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate 
+      primary: black
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+
+theme: readthedocs
+
+markdown_extensions:
+  - admonition
