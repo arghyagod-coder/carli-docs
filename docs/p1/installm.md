@@ -14,7 +14,7 @@ First, head over to the [Calam Arch SourceForge page](https://sourceforge.net/pr
 
 Alternatively, if you need an older release of the Calam Arch installer, find the “Files” tab, select it. Then, click on the “Files” folder to check out older releases of the installer.
 
-## Installing Arch Linux on VirtualBox
+## Installing Calam Arch on VirtualBox
 
 !!! Warning 
     Use this method ONLY IF you are gonna install Arch in a Virtual Machine
@@ -25,13 +25,7 @@ Undoubtedly, you need to first [install VirtualBox on Linux](https://itsfoss.com
 
 If you are using Windows 10 or newer version, please ensure that you have virtualization enabled on your system.
 
-Once done, you need to head to [Arch Linux’s official website](https://archlinux.org/download/) to download the ISO file. You should find options to [download using torrent](https://itsfoss.com/best-torrent-ubuntu/) or download the file directly.
-
-![archlinux downloads|800x419](https://i0.wp.com/itsfoss.com/wp-content/uploads/2021/10/archlinux-downloads.png?resize=800%2C419&ssl=1)
-
-Hold on to the ISO file when needed, you can delete it to [free space on your system](https://itsfoss.com/free-up-space-ubuntu-linux/) after successful installation.
-
-Now, let us begin installing Arch Linux on VirtualBox.
+Keep your downloaded ISO ready.
 
 ### Part 1. Creating the Virtual Machine
 
