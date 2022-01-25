@@ -1,7 +1,7 @@
 site_name: Create your Own Operating System Easily!
 repo_url: https://github.com/arghyagod-coder/carli-docs
 repo_name: arghyagod-coder/carli-docs
-site_description: "A detailed user guide to a CalinixOS user, which takes you through the walls and cores of the OS as a user"
+site_description: "A detailed user guide to making your own linux distribution using the CARLI Project, which takes you through the walls and cores of an Arch Linux System as a user"
 site_author: "Arghya Sarkar, Founder and Lead of Calinix Project"
 copyright: "Copyright © The Calinix Project 2021"
 
@@ -13,6 +13,17 @@ nav:
     - Phase 1:
       - 'p1/intro.md'
       - 'p1/installm.md'
+      - 'p1/pkgmngsys.md'
+      - 'p1/repos.md'
+      - 'p1/aur.md'
+      - 'p1/fs.md'
+    - Phase 2:
+      - 'p2/intro.md'
+      - 'p2/getting-carli-key.md'
+      - 'p2/0-getting-the-base-project-ready.md'
+      # - 'p2/1-installing-and-learning-about-archiso.md'
+
+
 
 
 remote_name: origin
@@ -31,7 +42,7 @@ theme:
     - search.suggest
     - search.highlight
   language: en
-  logo: assets/720x720_white.png
+  logo: https://www.arcolinux.info/wp-content/uploads/2019/10/carli-color.png
   favicon: assets/720x720_white.png
   palette:
     - scheme: default
@@ -45,7 +56,7 @@ theme:
         icon: material/toggle-switch
         name: Switch to light mode
 
-theme: readthedocs
+# theme: readthedocs
 
 markdown_extensions:
   - admonition
