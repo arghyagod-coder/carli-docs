@@ -1,0 +1,879 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A detailed user guide to making your own linux distribution using the CARLI Project, which takes you through the walls and cores of an Arch Linux System as a user">
+      
+      
+        <meta name="author" content="Arghya Sarkar, Founder and Lead of Calinix Project">
+      
+      
+      <link rel="icon" href="../../assets/720x720_white.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.8">
+    
+    
+      
+        <title>Install Arch Linux with Calam-Arch - Create your Own Operating System Easily!</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6e60f8b8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#install-arch-linux-with-calam-arch" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://arcolinuxiso.com" title="Create your Own Operating System Easily!" class="md-header__button md-logo" aria-label="Create your Own Operating System Easily!" data-md-component="logo">
+      
+  <img src="https://www.arcolinux.info/wp-content/uploads/2019/10/carli-color.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Create your Own Operating System Easily!
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Install Arch Linux with Calam-Arch
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arghyagod-coder/carli-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arghyagod-coder/carli-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://arcolinuxiso.com" title="Create your Own Operating System Easily!" class="md-nav__button md-logo" aria-label="Create your Own Operating System Easily!" data-md-component="logo">
+      
+  <img src="https://www.arcolinux.info/wp-content/uploads/2019/10/carli-color.png" alt="logo">
+
+    </a>
+    Create your Own Operating System Easily!
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arghyagod-coder/carli-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arghyagod-coder/carli-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Start Here
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Start Here" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Start Here
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../distributions/" class="md-nav__link">
+        Examples of Distributions Spun from ArchISO
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Phase 1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Phase 1" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Phase 1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Install Arch Linux with Calam-Arch
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Install Arch Linux with Calam-Arch
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#downloading-calam-arch-iso" class="md-nav__link">
+    Downloading Calam Arch ISO
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-calam-arch-on-virtualbox" class="md-nav__link">
+    Installing Calam Arch on VirtualBox
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing Calam Arch on VirtualBox">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#part-1-creating-the-virtual-machine" class="md-nav__link">
+    Part 1. Creating the Virtual Machine
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-2-adding-the-iso-file-to-start-installing-arch-linux" class="md-nav__link">
+    Part 2. Adding the ISO File to Start Installing Arch Linux
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-calam-arch-usb-installer" class="md-nav__link">
+    Creating Calam Arch USB installer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-arch-linux-with-calam-arch" class="md-nav__link">
+    Installing Arch Linux with Calam Arch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-video-links" class="md-nav__link">
+    Reference Video Links
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pkgmngsys/" class="md-nav__link">
+        How To Manage Packages Using Pacman
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repos/" class="md-nav__link">
+        Understanding Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aur/" class="md-nav__link">
+        A Beginner's Guide to the Arch User Repository
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fs/" class="md-nav__link">
+        The Linux Filesystem Explained
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Phase 2
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Phase 2" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Phase 2
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../p2/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../p2/getting-carli-key/" class="md-nav__link">
+        Getting the Carli Keys
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../p2/0-getting-the-base-project-ready/" class="md-nav__link">
+        Git and Github
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#downloading-calam-arch-iso" class="md-nav__link">
+    Downloading Calam Arch ISO
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-calam-arch-on-virtualbox" class="md-nav__link">
+    Installing Calam Arch on VirtualBox
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing Calam Arch on VirtualBox">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#part-1-creating-the-virtual-machine" class="md-nav__link">
+    Part 1. Creating the Virtual Machine
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-2-adding-the-iso-file-to-start-installing-arch-linux" class="md-nav__link">
+    Part 2. Adding the ISO File to Start Installing Arch Linux
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-calam-arch-usb-installer" class="md-nav__link">
+    Creating Calam Arch USB installer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-arch-linux-with-calam-arch" class="md-nav__link">
+    Installing Arch Linux with Calam Arch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-video-links" class="md-nav__link">
+    Reference Video Links
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/arghyagod-coder/carli-docs/edit/master/docs/p1/installm.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+<h1 id="install-arch-linux-with-calam-arch">Install Arch Linux with Calam-Arch</h1>
+<p>As this tutorial is made for beginners, we use the Calam Arch installer. It is an excellent tool that can install vanilla Arch Linux with ease, rather than via the command line. Here’s how to use it.</p>
+<p><strong>Note: The Calam Arch Linux installer ISO requires at least 1 GB of space. For best results, use a 1 GB USB flash drive or larger. Alternatively, burning an ISO file to a DVD also works, though DVD instructions are not covered in this guide.</strong></p>
+<p><img alt="|1200x674" src="https://www.addictivetips.com/app/uploads/2021/08/calam-arch-startup.png" /></p>
+<h2 id="downloading-calam-arch-iso">Downloading Calam Arch ISO</h2>
+<p>The Calam Arch ISO installer is available for download on the project’s SourceForge page. To download the latest release of the ISO installer to your computer, do the following.</p>
+<p>First, head over to the <a href="https://sourceforge.net/projects/blue-arch-installer/">Calam Arch SourceForge page</a>. Once on the page, locate the green “Download” button. When you select this button, the Calam Arch ISO file will begin to download.</p>
+<p>Alternatively, if you need an older release of the Calam Arch installer, find the “Files” tab, select it. Then, click on the “Files” folder to check out older releases of the installer.</p>
+<h2 id="installing-calam-arch-on-virtualbox">Installing Calam Arch on VirtualBox</h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Use this method ONLY IF you are gonna install Arch in a Virtual Machine</p>
+</div>
+<p>Undoubtedly, you need to first <a href="https://itsfoss.com/install-virtualbox-ubuntu/">install VirtualBox on Linux</a> or Windows. On Windows, simply go to the Oracle’s website and download VirtualBox.</p>
+<p><strong><a href="https://www.virtualbox.org/wiki/Downloads">Download VirtualBox</a></strong></p>
+<p>If you are using Windows 10 or newer version, please ensure that you have virtualization enabled on your system.</p>
+<p>Keep your downloaded ISO ready.</p>
+<h3 id="part-1-creating-the-virtual-machine">Part 1. Creating the Virtual Machine</h3>
+<p><strong>Step 1:</strong> First, you need to set up a few things in VirtualBox. Launch VirtualBox and click on “<strong>New</strong>” to create a virtual machine.</p>
+<p><img alt="virtualbox new|800x562" src="https://i0.wp.com/itsfoss.com/wp-content/uploads/2021/10/virtualbox-new.png?resize=800%2C562&amp;ssl=1" /></p>
+<p>Note that you can continue creating the virtual machine using the guided mode, but you get more options at a single glance with the expert mode.</p>
+<p><img alt="virtualbox expert mode|707x438" src="https://i0.wp.com/itsfoss.com/wp-content/uploads/2021/10/virtualbox-expert-mode.png?resize=707%2C438&amp;ssl=1" /></p>
+<p>Hence, I recommend using the expert mode to create the virtual machine.</p>
+<p>Fret not, the expert mode is as easy, with just a bit of extra available options and nothing else to worry about.</p>
+<p><strong>Step 2</strong>: Enter the name of your virtual machine, it should auto-detect the “Type” and “Version” respectively when you type in “<strong>Arch Linux</strong>” in the name field.</p>
+<p><img alt="virtualbox create|800x536" src="https://i0.wp.com/itsfoss.com/wp-content/uploads/2021/10/virtualbox-create.png?resize=800%2C536&amp;ssl=1" /></p>
+<p>You should increase the memory size to use the virtual machine comfortably. If it is just for minor testing, you can go ahead with the default setting.</p>
+<p>In my case, I allocate ~<strong>4 GB of RAM</strong>.</p>
+<p>Also, make sure to <strong>create a virtual hard disk</strong> under the “Hard disk” option. It should be the selected option by default.</p>
+<p>Now, proceed to set the virtual hard disk size.</p>
+<p><strong>Step 3:</strong> You can choose a preferred location path for the virtual hard disk and tweak the size as per your requirements. The installation should not be a problem with the minimum allocated size (8 GB), but to be on the safe side, you may want to allocate at least 10-15 GB.</p>
+<p><img alt="virtualbox disk|800x528" src="https://i0.wp.com/itsfoss.com/wp-content/uploads/2021/10/virtualbox-disk.png?resize=800%2C528&amp;ssl=1" /></p>
+<p>Next, you need to select the hard disk file type as “<strong>VDI (VirtualBox Disk Image)</strong>” and the storage as “<strong>Dynamically allocated</strong>,” as shown in the image above.</p>
+<p>VDI is the most common hard disk type for the virtual hard disk.</p>
+<p>And, when you select the “<strong>Dynamically allocated</strong>” option for the hard disk storage, it means that the storage space will be utilized as per usage. In other words, 15 GB of space won’t be locked from your disk as soon as the virtual machine is created.</p>
+<p>Now, all you have to do is hit “<strong>Create</strong>” to add the virtual machine.</p>
+<h3 id="part-2-adding-the-iso-file-to-start-installing-arch-linux">Part 2. Adding the ISO File to Start Installing Arch Linux</h3>
+<p><img alt="choose disk virtualbox arch|800x440" src="https://i0.wp.com/itsfoss.com/wp-content/uploads/2021/10/choose-disk-virtualbox-arch.png?resize=800%2C440&amp;ssl=1" /></p>
+<p>Once the VM has been listed, you can look at its configuration and select the ISO as the disk drive under the <strong>Storage</strong> option.</p>
+<p>You can also separately head to the virtual machine settings to explore more and choose the ISO file.</p>
+<p><img alt="virtualbox settings option|800x551" src="https://i0.wp.com/itsfoss.com/wp-content/uploads/2021/10/virtualbox-settings-option.png?resize=800%2C551&amp;ssl=1" /></p>
+<p>To do that, navigate your way to the “<strong>Storage</strong>” setting of the VM.</p>
+<p><img alt="virtualbox choose iso|800x314" src="https://i0.wp.com/itsfoss.com/wp-content/uploads/2021/10/virtualbox-choose-iso.png?resize=800%2C314&amp;ssl=1" /></p>
+<p>Here, you will have to click on the “<strong>Empty</strong>” device under Controller and then proceed to select the Calam-Arch ISO file as the disk file (as shown in the image above).</p>
+<p>My ISO's name is archlinux-date-arch.iso but your might be something else, according to what you have downloaded</p>
+<p><img alt="virtualbox arch iso select|800x348" src="https://i0.wp.com/itsfoss.com/wp-content/uploads/2021/10/virtualbox-arch-iso-select.png?resize=800%2C348&amp;ssl=1" /></p>
+<p>Once you select it, hit “<strong>OK</strong>” to save the changes to your setting.</p>
+<p>Here’s how the virtual machine setting should look like with the ISO set as the disk to boot:</p>
+<p><img alt="virtualbox set start|800x548" src="https://i0.wp.com/itsfoss.com/wp-content/uploads/2021/10/virtualbox-set-start.png?resize=800%2C548&amp;ssl=1" /></p>
+<p>Now, hit “<strong>Start</strong>” to start the VM and get started with the installation.</p>
+<p>Then start the VM, you'll boot into Calam-Arch</p>
+<h2 id="creating-calam-arch-usb-installer">Creating Calam Arch USB installer</h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Use this method ONLY IF you are gonna install Arch in real hardware</p>
+</div>
+<p>The Calam Arch installer ISO file needs to be flashed to a USB flash drive. There are many ways to create a USB flash drive with an ISO file. In this guide, we’ll focus on the Etcher application.</p>
+<p>Why Etcher? It is cross-platform. So, no matter what operating system you flash the Calam Arch ISO file to, the instructions are the same. To get your hands on the Etcher application, head over to the official website. Download Etcher and install it on your computer.</p>
+<p>After installing the Etcher application on your computer, open it up and follow the step-by-step instructions below to make your Calam Arch USB installer.</p>
+<p><img alt="|1200x785" src="https://www.addictivetips.com/app/uploads/2020/01/etcher-page.jpg" /></p>
+<p><strong>Step 1:</strong> Select the “Flash from file” button with the mouse. When you click on this button, a pop-up menu will appear on the screen. Using the menu, locate the Calam Arch ISO file on your computer and select it.</p>
+<p><strong>Step 2:</strong> Find the “Select target” button with the mouse. Then, choose the USB flash drive you wish to install the Calam Arch ISO file to.</p>
+<p><strong>Step 3:</strong> Click on the “Flash!” button in the Etcher application to start the flashing process. This process will take quite a bit of time, so be patient. When it is complete, close Etcher.</p>
+<p>After closing the Etcher application, reboot the computer you plan to install Arch Linux on. Then, boot into the BIOS and configure it to boot from the USB flash drive.</p>
+<h2 id="installing-arch-linux-with-calam-arch">Installing Arch Linux with Calam Arch</h2>
+<p>To install Arch Linux with Calam Arch, start by clicking on the black Arch Linux logo on the desktop. Then, follow the step-by-step instructions below.</p>
+<p><strong>Step 1:</strong> Allow the Calam installer to launch on the desktop. Then, on the installer’s welcome page, find your preferred language. Then, click on the “Next” button to move to the next page in the installer.</p>
+<p><img alt="|1200x675" src="https://www.addictivetips.com/app/uploads/2021/08/calam-arch-welcome.png" /></p>
+<p><strong>Step 2:</strong> After selecting your language, you’ll need to select your timezone. Using the on-screen map, choose your preferred timezone. Or, use the drop-down menus to choose your timezone.</p>
+<p><img alt="|1200x682" src="https://www.addictivetips.com/app/uploads/2021/08/calam-arch-timezone.png" /></p>
+<p>Click “Next” to continue to the next page.</p>
+<p><strong>Step 3:</strong> You’ll now need to select your keyboard layout. Using the on-screen menu, find the keyboard layout you prefer. Or leave it as default, as the Calam Arch installer should automatically detect it.</p>
+<p><img alt="|1200x676" src="https://www.addictivetips.com/app/uploads/2021/08/calam-arch-keyboard-layout.png" /></p>
+<p>Click the “Next” button to move to the next page.</p>
+<p><strong>Step 4:</strong> Once the keyboard is configured, it is time to choose your partitioning method. Select “Install alongside” if you prefer to dual-boot with Windows. Or, if you wish to erase the hard drive, select the “Erase disk” option.</p>
+<p>If you are using a Virtual Machine, then just use "Erase Disk" option</p>
+<p><img alt="|1200x679" src="https://www.addictivetips.com/app/uploads/2021/08/calam-arch-partitioning.png" /></p>
+<p>When done, click the “Next” button.</p>
+<p><strong>Step 5:</strong> Following the partition setup, you’ll need to choose packages you wish to install with the new Arch Linux installation. Go through the list, choose your preferred desktop environment, graphics driver preferences, printer support (if needed), and other things.</p>
+<p><strong>Package Information:</strong></p>
+<ul>
+<li><strong>Base-Devel + Common Packages</strong>- Select this always</li>
+<li><strong>GeForce GTX-RTX Closed Drivers</strong>- Select this if you have a Nvidia GPU and you are not using a virtual machine.</li>
+<li><strong>GeForce Open Drivers</strong>- Select this if you have a Nvidia GPU and you are not using a virtual machine.</li>
+<li><strong>AMD Video Drivers</strong>- Select this if you have an AMD GPU and you are not using a virtual machine.</li>
+<li><strong>Intel Video Drivers</strong>- Select this if you have a Intel Integrated GPU and you are not using a virtual machine.</li>
+</ul>
+<p>Now time to choose your desktop interface:</p>
+<ul>
+<li><strong>XFCE4 Desktop</strong>- Select this if you want the XFCE Desktop Environment. XFCE Desktop looks like the following:</li>
+</ul>
+<p><img alt="" src="https://www.debugpoint.com/wp-content/uploads/2021/02/xfce416review.jpg" /></p>
+<ul>
+<li><strong>GNOME Desktop</strong>- Select this if you want the XFCE Desktop Environment. XFCE Desktop looks like the following:</li>
+</ul>
+<p><img alt="" src="https://www.gnome.org/wp-content/uploads/2021/03/wgo-splash-40.png" /></p>
+<ul>
+<li><strong>KDE Desktop</strong>- Select this if you want the XFCE Desktop Environment. XFCE Desktop looks like the following:</li>
+</ul>
+<p><img alt="" src="https://kde.org/announcements/plasma/5/5.22.0/plasma.png" /></p>
+<ul>
+<li><strong>Cinnamon Desktop</strong>- Select this if you want the XFCE Desktop Environment. XFCE Desktop looks like the following:</li>
+</ul>
+<p><img alt="" src="https://www.debugpoint.com/wp-content/uploads/2021/02/xfce416review.jpg" /></p>
+<ul>
+<li><strong>Budgie Desktop</strong>- Select this if you want the XFCE Desktop Environment. XFCE Desktop looks like the following:</li>
+</ul>
+<p><img alt="" src="https://www.debugpoint.com/wp-content/uploads/2021/02/xfce416review.jpg" /></p>
+<ul>
+<li><strong>Deepin Desktop</strong>- Select this if you want the XFCE Desktop Environment. XFCE Desktop looks like the following:</li>
+</ul>
+<p><img alt="" src="https://fostips.com/wp-content/uploads/2021/06/deepin-dark-feature.jpg" /></p>
+<p>All of the desktops are customizable and can be customized your own way. I personally recommend KDE or GNOME. KDE is light and also the most customizable desktop.</p>
+<ul>
+<li><strong>Printing Support</strong>- Select this to get Printing Support on your machine. This is preferred when you install Arch Linux in real hardware. </li>
+<li><strong>Web Browsers</strong>- Select your favourite web browser (I recommend firefox) from the drop down list. </li>
+</ul>
+<p><img alt="|1200x675" src="https://www.addictivetips.com/app/uploads/2021/08/calam-arch-select-packages.png" /></p>
+<p>When all packages are selected, click the “Next” button to confirm your choice.</p>
+<p><strong>Step 6:</strong> After setting up your packages for the Calam Arch Linux installer, you’ll have to set up your user account. First, write in your name in the “What is your name box.” Then, configure your username, and the name of your computer.</p>
+<p><img alt="|1200x675" src="https://www.addictivetips.com/app/uploads/2021/08/calam-install-overview.png" />After setting up your name, username, and computer name, enter your password. Be sure to enter in a secure, memorable password. Click on the “Next” button to move to the next step in the installer.</p>
+<p><strong>Step 7:</strong> Following setting up your username, the Calam Arch installer will show a summary of your installation. Look it over and make sure everything looks good. When done, click on the “Install” button at the bottom of the page to install the operating system onto your computer.</p>
+<p><img alt="|1200x674" src="https://www.addictivetips.com/app/uploads/2021/08/calam-arch-startup.png" /></p>
+<p>When the installation is complete, unplug your USB flash drive and reboot. Upon rebooting, Arch Linux will be ready to use. Enjoy!</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To reboot on VirtualBox, remove the Optical ISO image we added in the "Storage" section of Settings.</p>
+</div>
+<h2 id="reference-video-links">Reference Video Links</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=X9DSQk9GXd4">Installing Calam-Arch on VirtualBox</a></li>
+</ul>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../intro/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Introduction
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../pkgmngsys/" class="md-footer__link md-footer__link--next" aria-label="Next: How To Manage Packages Using Pacman" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              How To Manage Packages Using Pacman
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © The Calinix Project 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.22074ed6.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.960e086b.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,862 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A detailed user guide to making your own linux distribution using the CARLI Project, which takes you through the walls and cores of an Arch Linux System as a user">
+      
+      
+        <meta name="author" content="Arghya Sarkar, Founder and Lead of Calinix Project">
+      
+      
+      <link rel="icon" href="../../assets/720x720_white.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.8">
+    
+    
+      
+        <title>How To Manage Packages Using Pacman - Create your Own Operating System Easily!</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6e60f8b8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-to-manage-packages-using-pacman" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://arcolinuxiso.com" title="Create your Own Operating System Easily!" class="md-header__button md-logo" aria-label="Create your Own Operating System Easily!" data-md-component="logo">
+      
+  <img src="https://www.arcolinux.info/wp-content/uploads/2019/10/carli-color.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Create your Own Operating System Easily!
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              How To Manage Packages Using Pacman
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arghyagod-coder/carli-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arghyagod-coder/carli-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://arcolinuxiso.com" title="Create your Own Operating System Easily!" class="md-nav__button md-logo" aria-label="Create your Own Operating System Easily!" data-md-component="logo">
+      
+  <img src="https://www.arcolinux.info/wp-content/uploads/2019/10/carli-color.png" alt="logo">
+
+    </a>
+    Create your Own Operating System Easily!
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arghyagod-coder/carli-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arghyagod-coder/carli-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Start Here
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Start Here" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Start Here
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../distributions/" class="md-nav__link">
+        Examples of Distributions Spun from ArchISO
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Phase 1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Phase 1" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Phase 1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installm/" class="md-nav__link">
+        Install Arch Linux with Calam-Arch
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          How To Manage Packages Using Pacman
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        How To Manage Packages Using Pacman
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-install-packages-using-pacman" class="md-nav__link">
+    How To Install Packages Using Pacman
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-remove-packages-using-pacman" class="md-nav__link">
+    How To Remove Packages Using Pacman
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-upgrade-packages-using-pacman" class="md-nav__link">
+    How To Upgrade Packages Using Pacman
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-search-for-packages-using-pacman" class="md-nav__link">
+    How To Search for Packages Using Pacman
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-aur-in-arch-linux" class="md-nav__link">
+    How To Use AUR in Arch Linux
+  </a>
+  
+    <nav class="md-nav" aria-label="How To Use AUR in Arch Linux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-install-packages-using-a-helper" class="md-nav__link">
+    How To Install Packages Using a Helper
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-install-packages-manually" class="md-nav__link">
+    How To Install Packages Manually
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repos/" class="md-nav__link">
+        Understanding Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aur/" class="md-nav__link">
+        A Beginner's Guide to the Arch User Repository
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fs/" class="md-nav__link">
+        The Linux Filesystem Explained
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Phase 2
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Phase 2" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Phase 2
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../p2/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../p2/getting-carli-key/" class="md-nav__link">
+        Getting the Carli Keys
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../p2/0-getting-the-base-project-ready/" class="md-nav__link">
+        Git and Github
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-install-packages-using-pacman" class="md-nav__link">
+    How To Install Packages Using Pacman
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-remove-packages-using-pacman" class="md-nav__link">
+    How To Remove Packages Using Pacman
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-upgrade-packages-using-pacman" class="md-nav__link">
+    How To Upgrade Packages Using Pacman
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-search-for-packages-using-pacman" class="md-nav__link">
+    How To Search for Packages Using Pacman
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-aur-in-arch-linux" class="md-nav__link">
+    How To Use AUR in Arch Linux
+  </a>
+  
+    <nav class="md-nav" aria-label="How To Use AUR in Arch Linux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-install-packages-using-a-helper" class="md-nav__link">
+    How To Install Packages Using a Helper
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-install-packages-manually" class="md-nav__link">
+    How To Install Packages Manually
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/arghyagod-coder/carli-docs/edit/master/docs/p1/pkgmngsys.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+<h1 id="how-to-manage-packages-using-pacman">How To Manage Packages Using Pacman</h1>
+<p>Pacman is a package manager for the arch Linux and arch-based Linux distributions. If you have used Debian-based OS like ubuntu, then the  Pacman is similar to the apt command of Debian-based operating systems. Pacman contains the compressed files as a package format and maintains a text-based package database. Pacman keeps the system up to date by synchronizing package lists with the master server. Pacman can install the packages from the official repositories or your own build packages. It is the terminal way of installing software in Arch Linux, just like you install software in Windows/Mac</p>
+<p>In this section, I'll introduce you to some of the common pacman commands that you may need on a daily basis.</p>
+<h3 id="how-to-install-packages-using-pacman">How To Install Packages Using Pacman</h3>
+<p>To install a package using pacman, you can use the following command syntax. For example, to install rust:</p>
+<pre><code># sudo pacman -S &lt;package name&gt;
+
+sudo pacman -S rust
+</code></pre>
+<p>You can install multiple packages as follows:</p>
+<pre><code># sudo pacman -S &lt;package name&gt; &lt;package name&gt;
+
+sudo pacman -S rust golang
+</code></pre>
+<p>You can also specify the repository you want to install the package from like this:</p>
+<pre><code># sudo pacman -S &lt;package repository&gt;/&lt;package name&gt;
+
+sudo pacman -S extra/rust
+</code></pre>
+<p>In this command, the <code>-S</code> option means synchronize which is equivalent to install in the case of apt or dnf package managers.</p>
+<h3 id="how-to-remove-packages-using-pacman">How To Remove Packages Using Pacman</h3>
+<p>To remove a package using pacman you can use the following syntax:</p>
+<pre><code># sudo pacman -R &lt;package name&gt;
+
+sudo pacman -R rust
+</code></pre>
+<p>This will remove the package but will leave the dependencies. You can remove the package with dependencies if they're not required by any other package by executing the following command:</p>
+<pre><code># sudo pacman -Rs &lt;package name&gt;
+
+sudo pacman -Rs rust
+</code></pre>
+<p>Pacman often saves important configuration files when removing certain applications. You can override this behavior by using the following syntax:</p>
+<pre><code># sudo pacman -Rn &lt;package name&gt;
+
+sudo pacman -Rn rust
+</code></pre>
+<p>I usually use <code>sudo pacman -Rns</code> whenever I want to uninstall something. One last thing that I want to show is how to remove orphan packages.</p>
+<p>In Ubuntu the <code>sudo apt autoremove</code> command uninstalls any unnecessary package. The equivalent command in Arch is:</p>
+<pre><code>sudo pacman -Qdtq | pacman -Rs -
+</code></pre>
+<p>This will cleanup any leftover package from previously installed packages.</p>
+<h3 id="how-to-upgrade-packages-using-pacman">How To Upgrade Packages Using Pacman</h3>
+<p>To upgrade all the packages in your system, you can use the following syntax:</p>
+<pre><code>sudo pacman -Syu
+</code></pre>
+<p>In this command, the <code>S</code> option synchronizes the packages, <code>y</code> refreshes the local package cache, and <code>u</code> updates the system. This is like the ultimate upgrade command and I run it at least once everyday.</p>
+<h3 id="how-to-search-for-packages-using-pacman">How To Search for Packages Using Pacman</h3>
+<p>To search for a package in the database, you can use the following syntax:</p>
+<pre><code># sudo pacman -Ss &lt;package name&gt;
+
+sudo pacman -Ss rust
+</code></pre>
+<p>This will print out all the packages found in the database with that search term and will also indicate if any of those are already installed.</p>
+<p>If you would like to check if a package is already installed or not, you can use the following command:</p>
+<pre><code># sudo pacman -Qs &lt;package name&gt;
+
+sudo pacman -Qs rust
+</code></pre>
+<p>This is useful when you want to uninstall a package but do not know its exact name.</p>
+<h2 id="how-to-use-aur-in-arch-linux">How To Use AUR in Arch Linux</h2>
+<p>According to <a href="https://itsfoss.com/aur-arch-linux/">It's FOSS</a>,</p>
+<blockquote>
+<p>AUR stands for Arch User Repository. It is a community-driven repository for Arch-based Linux distributions users. It contains package descriptions named PKGBUILDs that allow you to compile a package from source with makepkg and then install it via pacman (package manager in Arch Linux).</p>
+</blockquote>
+<p>AUR is one of the most attractive features of Arch Linux. It's due to AUR that Arch Linux has a package count almost equal to Debian. You've already used <code>pacman</code> to install various packages. Sadly, you can not use that to install packages from AUR.</p>
+<p>You'll have to install one of the AUR helpers instead. Arch Linux doesn't support any of these helpers and advises you to learn how to build packages manually. I'll explain both techniques here. If you understand how a helper works, you'll be able to do it manually as well.</p>
+<h3 id="how-to-install-packages-using-a-helper">How To Install Packages Using a Helper</h3>
+<p>Among the available and currently maintained AUR helpers, I like the <code>yay</code> or yet another yogurt package. It's written in Go and is quite solid.</p>
+<p>You can not install <code>yay</code> like other packages. You'll have to get the source code and compile the program. You'll need <code>git</code> and the <code>base-devel</code> package to do so. Assuming you've already installed <code>base-devel</code> during Arch Linux installation:</p>
+<pre><code>pacman -S git
+</code></pre>
+<p>Clone the yay repository from GitHub and <code>cd</code> into it:</p>
+<pre><code>git clone https://aur.archlinux.org/yay.git &amp;&amp; cd yay
+</code></pre>
+<p>To build and install yay from source, execute the following command:</p>
+<pre><code>makepkg -si
+</code></pre>
+<p>The makepkg script automates the build process of packages. The <code>-si</code> options stand for sync dependencies and install. The first option will install required dependencies (Golang in this case) and the later option will install the built package.</p>
+<p>After the build process finishes, makepkg will ask for installation confirmation and your password. Input your password carefully and let the installation finish.</p>
+<p>Check if yay has been installed properly or not:</p>
+<pre><code>yay --version
+
+# yay v11.1.0 - libalpm v13.0.1
+</code></pre>
+<p>Now let's install something using yay. One of the common packages you may want to install is the <a href="https://aur.archlinux.org/packages/visual-studio-code-bin/">visual-studio-code-bin</a> package. To do so, execute the following command:</p>
+<pre><code>yay -S visual-studio-code-bin
+</code></pre>
+<p>Unlike pacman, you shouldn't run yay with sudo. Yay will look for the given package and will ask whether you would like to see the diff or not:</p>
+<p><img alt="" src="https://www.freecodecamp.org/news/content/images/2022/01/VirtualBox_archlinux-2022.01.01-x86_64_14_01_2022_21_07_26.png" /></p>
+<p>All the repositories over at AUR comes with a PKGBUILD file which contains the instructions for building this package. Yay has this nice feature where it shows you what has changed in the PKGBUILD file since the last time.</p>
+<p>For now, I'll pick <code>N</code> for none and hit enter. Yay will now look for the dependencies and ask for your password to install them.</p>
+<p><img alt="" src="https://www.freecodecamp.org/news/content/images/2022/01/VirtualBox_archlinux-2022.01.01-x86_64_14_01_2022_21_19_58.png" /></p>
+<p>Confirm the installation and provide your password. Yay will then install the dependencies and start building the package. Once built, yay will install the package and prompt for your password where necessary.</p>
+<p>After the installation finishes, search for Visual Studio Code in the application launcher:</p>
+<p><img alt="" src="https://www.freecodecamp.org/news/content/images/2022/01/VirtualBox_archlinux-2022.01.01-x86_64_14_01_2022_21_28_42.png" /></p>
+<p>Congratulations on installing your first package from AUR. Yay commands are almost identical to pacman, so if you can do something with pacman, you should be able to do that with yay as well.</p>
+<p>In fact, yay can also install packages from official Arch Linux repositories like pacman. But I would suggest you to use yay only for installing packages from AUR when necessary and pacman for everything else.</p>
+<h3 id="how-to-install-packages-manually">How To Install Packages Manually</h3>
+<p>Like I said in the previous section, the ArchWiki suggests avoiding any AUR helper and installing packages from AUR manually. I'll now show you how to do it.</p>
+<p>Make sure you have <code>git</code> and <code>base-devel</code> packages installed. If not, use <code>pacman</code> to install them.</p>
+<p>For the demonstration, let's install Spotify this time. First visit the AUR page for the spotify package - https://aur.archlinux.org/packages/spotify/ and copy the "Git Clone URL" from there.</p>
+<p><img alt="" src="https://www.freecodecamp.org/news/content/images/2022/01/image-68.png" /></p>
+<p>The page even lists all the dependencies you'll need. Clone the repository to your machine:</p>
+<p><img alt="" src="https://www.freecodecamp.org/news/content/images/2022/01/VirtualBox_archlinux-2022.01.01-x86_64_16_01_2022_21_16_43.png" /></p>
+<p>Every AUR repository comes with a PKGBUILD file containing the instructions for building the package. Whenever you're installing a package from AUR, it's a great idea to checkout the PKGBUILD file using something like the <code>cat</code> command:</p>
+<p><img alt="" src="https://www.freecodecamp.org/news/content/images/2022/01/VirtualBox_archlinux-2022.01.01-x86_64_16_01_2022_21_22_37.png" /></p>
+<p>Make sure there's nothing harmful in the file. Once you're satisfied, use <code>makepkg</code> to install any dependencies, build the package, and install it. Ideally there shouldn't be any issues but sometimes, things can take an unexpected turn.</p>
+<p><img alt="" src="https://www.freecodecamp.org/news/content/images/2022/01/VirtualBox_archlinux-2022.01.01-x86_64_16_01_2022_21_34_29.png" /></p>
+<p>In these cases, go back to the corresponding AUR page and check the user comments. Like in this case, I found the following pinned comment:</p>
+<p><img alt="" src="https://www.freecodecamp.org/news/content/images/2022/01/image-69.png" /></p>
+<p>Turns out the package requires you to add the Spotify for Linux gpg key to the user kyechain. This command downloads the gpg key using <code>curl</code> and pipes it as the input of the <code>gpg --import</code> command:</p>
+<p><img alt="" src="https://www.freecodecamp.org/news/content/images/2022/01/VirtualBox_archlinux-2022.01.01-x86_64_16_01_2022_21_37_50.png" /></p>
+<p>Try executing <code>makepkg -si</code> once again and everything should work fine this time:</p>
+<p><img alt="" src="https://www.freecodecamp.org/news/content/images/2022/01/VirtualBox_archlinux-2022.01.01-x86_64_16_01_2022_21_39_33.png" /></p>
+<p>See, told ya! Manually installing packages often involves such troubleshooting but help is almost always around the comment corner. Let's enjoy some music now.</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../installm/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Install Arch Linux with Calam-Arch" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Install Arch Linux with Calam-Arch
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../repos/" class="md-footer__link md-footer__link--next" aria-label="Next: Understanding Linux" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Understanding Linux
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © The Calinix Project 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.22074ed6.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.960e086b.min.js"></script>
+      
+    
+  </body>
+</html>

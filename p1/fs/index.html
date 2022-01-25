@@ -1,0 +1,1055 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A detailed user guide to making your own linux distribution using the CARLI Project, which takes you through the walls and cores of an Arch Linux System as a user">
+      
+      
+        <meta name="author" content="Arghya Sarkar, Founder and Lead of Calinix Project">
+      
+      
+      <link rel="icon" href="../../assets/720x720_white.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.8">
+    
+    
+      
+        <title>The Linux Filesystem Explained - Create your Own Operating System Easily!</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6e60f8b8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-linux-filesystem-explained" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://arcolinuxiso.com" title="Create your Own Operating System Easily!" class="md-header__button md-logo" aria-label="Create your Own Operating System Easily!" data-md-component="logo">
+      
+  <img src="https://www.arcolinux.info/wp-content/uploads/2019/10/carli-color.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Create your Own Operating System Easily!
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              The Linux Filesystem Explained
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arghyagod-coder/carli-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arghyagod-coder/carli-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://arcolinuxiso.com" title="Create your Own Operating System Easily!" class="md-nav__button md-logo" aria-label="Create your Own Operating System Easily!" data-md-component="logo">
+      
+  <img src="https://www.arcolinux.info/wp-content/uploads/2019/10/carli-color.png" alt="logo">
+
+    </a>
+    Create your Own Operating System Easily!
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arghyagod-coder/carli-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arghyagod-coder/carli-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Start Here
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Start Here" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Start Here
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../distributions/" class="md-nav__link">
+        Examples of Distributions Spun from ArchISO
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Phase 1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Phase 1" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Phase 1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installm/" class="md-nav__link">
+        Install Arch Linux with Calam-Arch
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pkgmngsys/" class="md-nav__link">
+        How To Manage Packages Using Pacman
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repos/" class="md-nav__link">
+        Understanding Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aur/" class="md-nav__link">
+        A Beginner's Guide to the Arch User Repository
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          The Linux Filesystem Explained
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        The Linux Filesystem Explained
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    Structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directories" class="md-nav__link">
+    Directories
+  </a>
+  
+    <nav class="md-nav" aria-label="Directories">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bin" class="md-nav__link">
+    /bin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boot" class="md-nav__link">
+    /boot
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dev" class="md-nav__link">
+    /dev
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etc" class="md-nav__link">
+    /etc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#home" class="md-nav__link">
+    /home
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lib" class="md-nav__link">
+    /lib
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media" class="md-nav__link">
+    /media
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mnt" class="md-nav__link">
+    /mnt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opt" class="md-nav__link">
+    /opt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proc" class="md-nav__link">
+    /proc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root" class="md-nav__link">
+    /root
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    /run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sbin" class="md-nav__link">
+    /sbin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usr" class="md-nav__link">
+    /usr
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#srv" class="md-nav__link">
+    /srv
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sys" class="md-nav__link">
+    /sys
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tmp" class="md-nav__link">
+    /tmp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#var" class="md-nav__link">
+    /var
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#digging-deeper" class="md-nav__link">
+    Digging Deeper
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Phase 2
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Phase 2" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Phase 2
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../p2/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../p2/getting-carli-key/" class="md-nav__link">
+        Getting the Carli Keys
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../p2/0-getting-the-base-project-ready/" class="md-nav__link">
+        Git and Github
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    Structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directories" class="md-nav__link">
+    Directories
+  </a>
+  
+    <nav class="md-nav" aria-label="Directories">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bin" class="md-nav__link">
+    /bin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boot" class="md-nav__link">
+    /boot
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dev" class="md-nav__link">
+    /dev
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etc" class="md-nav__link">
+    /etc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#home" class="md-nav__link">
+    /home
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lib" class="md-nav__link">
+    /lib
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media" class="md-nav__link">
+    /media
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mnt" class="md-nav__link">
+    /mnt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opt" class="md-nav__link">
+    /opt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proc" class="md-nav__link">
+    /proc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root" class="md-nav__link">
+    /root
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    /run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sbin" class="md-nav__link">
+    /sbin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usr" class="md-nav__link">
+    /usr
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#srv" class="md-nav__link">
+    /srv
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sys" class="md-nav__link">
+    /sys
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tmp" class="md-nav__link">
+    /tmp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#var" class="md-nav__link">
+    /var
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#digging-deeper" class="md-nav__link">
+    Digging Deeper
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/arghyagod-coder/carli-docs/edit/master/docs/p1/fs.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+<h1 id="the-linux-filesystem-explained">The Linux Filesystem Explained</h1>
+<p>Back in 1996 I learned how to install software on my spanking new Linux before really understanding the topography of the filesystem. This turned out to be a problem, not so much for programs, because they would just magically work even though I hadn’t a clue of where the actual executable files landed. The problem was the documentation.</p>
+<p>You see, back then, Linux was not the intuitive, user-friendly system it is today. You had to read a lot. You had to know things about the frequency rate of your CRT monitor and the ins and outs of your noisy dial-up modem, among hundreds of other things. I soon realized I would need to spend some time getting a handle on how the directories were organized and what all their exotic names like <em>/etc</em> (not for miscellaneous files), <em>/usr</em> (not for user files), and <em>/</em> <strong>bin</strong> (not a trash can) meant.</p>
+<p>This tutorial will help you get up to speed faster than I did.</p>
+<h3 id="structure">Structure</h3>
+<p>It makes sense to explore the Linux filesystem from a terminal window, not because the author is a grumpy old man and resents new kids and their pretty graphical tools — although there is some truth to that — but because a terminal, despite being text-only, has better tools to show the map of Linux’s directory tree.</p>
+<p>In fact, that is the name of the first tool you’ll install to help you on the way: <em>tree</em>. If you are using Ubuntu or Debian, you can do:</p>
+<p>sudo apt install tree</p>
+<p>On Red Hat or Fedora, do:</p>
+<p>sudo dnf install tree</p>
+<p>For SUSE/openSUSE use <code>zypper</code>:</p>
+<p>sudo zypper install tree</p>
+<p>For Arch-like distros (Manjaro, Antergos, etc.) use:</p>
+<p>sudo pacman -S tree</p>
+<p>… and so on.</p>
+<p>Once installed, stay in your terminal window and run <em>tree</em> like this:</p>
+<p>tree /</p>
+<p><code>The /</code> in the instruction above refers to the <em>root</em> directory. The root directory is the one from which all other directories branch off from. When you run <code>tree</code> and tell it to start with <em>/</em>, you will see the whole directory tree, all directories and all the subdirectories in the whole system, with all their files, fly by.</p>
+<p>If you have been using your system for some time, this may take a while, because, even if you haven’t generated many files yourself, a Linux system and its apps are always logging, cacheing, and storing temporal files. The number of entries in the file system can grow quite quickly.</p>
+<p>Don’t feel overwhelmed, though. Instead, try this:</p>
+<p>tree -L 1 /</p>
+<p>And you should see what is shown in Figure 1.</p>
+<p><img alt="" src="https://lcom.static.linuxfound.org/sites/lcom/files/f01_tree01.png" /></p>
+<p>Figure 1: tree</p>
+<p>The instruction above can be translated as “<em>show me only the 1st Level of the directory tree starting at / (root)</em>“. The <em><code>-L</code></em> option tells <code>tree</code> how many levels down you want to see.</p>
+<p>Most Linux distributions will show you the same or a very similar layout to what you can see in the image above. This means that even if you feel confused now, master this, and you will have a handle on most, if not all, Linux installations in the whole wide world.</p>
+<p>To get you started on the road to mastery, let’s look at what each directory is used for. While we go through each, you can peek at their contents using <em>ls</em>.</p>
+<h3 id="directories">Directories</h3>
+<p>From top to bottom, the directories you are seeing are as follows.</p>
+<h4 id="bin"><em>/bin</em></h4>
+<p><em>/bin</em> is the directory that contains <em>bin</em>aries, that is, some of the applications and programs you can run. You will find the <em>ls</em> program mentioned above in this directory, as well as other basic tools for making and removing files and directories, moving them around, and so on. There are more <em>bin</em> directories in other parts of the file system tree, but we’ll be talking about those in a minute.</p>
+<h4 id="boot"><em>/boot</em></h4>
+<p>The <em>/boot</em> directory contains files required for starting your system. Do I have to say this? Okay, I’ll say it: <strong>DO NOT TOUCH!</strong>. If you mess up one of the files in here, you may not be able to run your Linux and it is a pain to repair. On the other hand, don’t worry too much about destroying your system by accident: you have to have superuser privileges to do that.</p>
+<h4 id="dev"><em>/dev</em></h4>
+<p><em>/dev</em> contains <em>dev</em>ice files. Many of these are generated at boot time or even on the fly. For example, if you plug in a new webcam or a USB pendrive into your machine, a new device entry will automagically pop up here.</p>
+<h4 id="etc"><em>/etc</em></h4>
+<p><em>/etc</em> is the directory where names start to get confusing. <em>/etc</em> gets its name from the earliest Unixes and it was literally “et cetera” because it was the dumping ground for system files administrators were not sure where else to put.</p>
+<p>Nowadays, it would be more appropriate to say that <em>etc</em> stands for “Everything to configure,” as it contains most, if not all system-wide configuration files. For example, the files that contain the name of your system, the users and their passwords, the names of machines on your network and when and where the partitions on your hard disks should be mounted are all in here. Again, if you are new to Linux, it may be best if you don’t touch too much in here until you have a better understanding of how things work.</p>
+<h4 id="home"><em>/home</em></h4>
+<p><em>/home</em> is where you will find your users’ personal directories. In my case, under <em>/home</em> there are two directories: <em>/home/paul</em>, which contains all my stuff; and <em>/home/guest</em>, in case anybody needs to borrow my computer.</p>
+<h4 id="lib"><em>/lib</em></h4>
+<p><em>/lib</em> is where <em>lib</em>raries live. Libraries are files containing code that your applications can use. They contain snippets of code that applications use to draw windows on your desktop, control peripherals, or send files to your hard disk.</p>
+<p>There are more <em>lib</em> directories scattered around the file system, but this one, the one hanging directly off of <em>/</em> is special in that, among other things, it contains the all-important kernel modules. The kernel modules are drivers that make things like your video card, sound card, WiFi, printer, and so on, work.</p>
+<h4 id="media"><em>/media</em></h4>
+<p>The <em>/media</em> directory is where external storage will be automatically mounted when you plug it in and try to access it. As opposed to most of the other items on this list, <em>/media</em> does not hail back to 1970s, mainly because inserting and detecting storage (pendrives, USB hard disks, SD cards, external SSDs, etc) on the fly, while a computer is running, is a relatively new thing.</p>
+<h4 id="mnt"><em>/mnt</em></h4>
+<p>The <em>/mnt</em> directory, however, is a bit of remnant from days gone by. This is where you would manually mount storage devices or partitions. It is not used very often nowadays.</p>
+<h4 id="opt"><em>/opt</em></h4>
+<p>The <em>/opt</em> directory is often where software you compile (that is, you build yourself from source code and do not install from your distribution repositories) sometimes lands. Applications will end up in the <em>/opt/bin</em> directory and libraries in the <em>/opt/lib</em> directory.</p>
+<p>A slight digression: another place where applications and libraries end up in is <em>/usr/local</em>, When software gets installed here, there will also be <em>/usr/local/bin</em> and <em>/usr/local/lib</em> directories. What determines which software goes where is how the developers have configured the files that control the compilation and installation process.</p>
+<h4 id="proc"><em>/proc</em></h4>
+<p><em>/proc</em>, like <em>/dev</em> is a virtual directory. It contains information about your computer, such as information about your CPU and the kernel your Linux system is running. As with <em>/dev</em>, the files and directories are generated when your computer starts, or on the fly, as your system is running and things change.</p>
+<h4 id="root"><em>/root</em></h4>
+<p><em>/root</em> is the home directory of the superuser (also known as the “Administrator”) of the system. It is separate from the rest of the users’ home directories BECAUSE YOU ARE NOT MEANT TO TOUCH IT. Keep your own stuff in you own directories, people.</p>
+<h4 id="run"><em>/run</em></h4>
+<p><em>/run</em> is another new directory. System processes use it to store temporary data for their own nefarious reasons. This is another one of those DO NOT TOUCH folders.</p>
+<h4 id="sbin"><em>/sbin</em></h4>
+<p><em>/sbin</em> is similar to <em>/bin</em>, but it contains applications that only the superuser (hence the initial <em>s</em>) will need. You can use these applications with the <code>sudo</code> command that temporarily concedes you superuser powers on many distributions. <em>/sbin</em> typically contains tools that can install stuff, delete stuff and format stuff. As you can imagine, some of these instructions are lethal if you use them improperly, so handle with care.</p>
+<h4 id="usr"><em>/usr</em></h4>
+<p>The <em>/usr</em> directory was where users’ home directories were originally kept back in the early days of UNIX. However, now <em>/home</em> is where users kept their stuff as we saw above. These days, <em>/usr</em> contains a mish-mash of directories which in turn contain applications, libraries, documentation, wallpapers, icons and a long list of other stuff that need to be shared by applications and services.</p>
+<p>You will also find <em>bin</em>, <em>sbin</em> and <em>lib</em> directories in <em>/usr</em>. What is the difference with their root-hanging cousins? Not much nowadays. Originally, the <em>/bin</em> directory (hanging off of root) would contain very basic commands, like <code>ls</code>, <code>mv</code> and <code>rm</code>; the kind of commands that would come pre-installed in all UNIX/Linux installations, the bare minimum to run and maintain a system. <em>/usr/bin</em> on the other hand would contain stuff the users would install and run to use the system as a work station, things like word processors, web browsers, and other apps.</p>
+<p>But many modern Linux distributions just put everything into <em>/usr/bin</em> and have <em>/bin</em> point to <em>/usr/bin</em> just in case erasing it completely would break something. So, while Debian, Ubuntu and Mint still keep <em>/bin</em> and <em>/usr/bin</em> (and <em>/sbin</em> and <em>/usr/sbin</em>) separate; others, like Arch and its derivatives just have one “real” directory for binaries, <em>/usr/bin</em>, and the rest or <em><em>bin</em>s are “fake” directories that point to </em>/usr/bin*.</p>
+<h4 id="srv"><em>/srv</em></h4>
+<p>The <em>/srv</em> directory contains data for servers. If you are running a web server from your Linux box, your HTML files for your sites would go into <em>/srv/http</em> (or <em>/srv/www</em>). If you were running an FTP server, your files would go into <em>/srv/ftp</em>.</p>
+<h4 id="sys"><em>/sys</em></h4>
+<p><em>/sys</em> is another virtual directory like <em>/proc</em> and <em>/dev</em> and also contains information from devices connected to your computer.</p>
+<p>In some cases you can also manipulate those devices. I can, for example, change the brightness of the screen of my laptop by modifying the value stored in the <em>/sys/devices/pci0000:00/0000:00:02.0/drm/card1/card1-eDP-1/intel_backlight/brightness</em> file (on your machine you will probably have a different file). But to do that you have to become superuser. The reason for that is, as with so many other virtual directories, messing with the contents and files in <em>/sys</em> can be dangerous and you can trash your system. DO NOT TOUCH until you are sure you know what you are doing.</p>
+<h4 id="tmp"><em>/tmp</em></h4>
+<p><em>/tmp</em> contains temporary files, usually placed there by applications that you are running. The files and directories often (not always) contain data that an application doesn’t need right now, but may need later on.</p>
+<p>You can also use <em>/tmp</em> to store your own temporary files — <em>/tmp</em> is one of the few directories hanging off / that you can actually interact with without becoming superuser.</p>
+<h4 id="var"><em>/var</em></h4>
+<p><em>/var</em> was originally given its name because its contents was deemed <em>variable</em>, in that it changed frequently. Today it is a bit of a misnomer because there are many other directories that also contain data that changes frequently, especially the virtual directories we saw above.</p>
+<p>Be that as it may, <em>/var</em> contains things like logs in the <em>/var/log</em> subdirectories. Logs are files that register events that happen on the system. If something fails in the kernel, it will be logged in a file in <em>/var/log</em>; if someone tries to break into your computer from outside, your firewall will also log the attempt here. It also contains <em>spools</em> for tasks. These “tasks” can be the jobs you send to a shared printer when you have to wait because another user is printing a long document, or mail that is waiting to be delivered to users on the system.</p>
+<p>Your system may have some more directories we haven’t mentioned above. In the screenshot, for example, there is a <em>/snap</em> directory. That’s because the shot was captured on an Ubuntu system. Ubuntu has recently incorporated <a href="https://www.ubuntu.com/desktop/snappy">snap</a> packages as a way of distributing software. The <em>/snap</em> directory contains all the files and the software installed from snaps.</p>
+<h3 id="digging-deeper">Digging Deeper</h3>
+<p>That is the root directory covered, but many of the subdirectories lead to their own set of files and subdirectories. Figure 2 gives you an overall idea of what the basic file system tree looks like (the image is kindly supplied under a CC By-SA license by Paul Gardner) and <a href="https://en.wikipedia.org/wiki/Unix_filesystem#Conventional_directory_layout">Wikipedia has a break down with a summary of what each directory is used for</a>.</p>
+<p><img alt="" src="https://lcom.static.linuxfound.org/sites/lcom/files/standard-unix-filesystem-hierarchy.png" /></p>
+<p>Figure 2: Standard Unix filesystem hierarchy.</p>
+<p>To explore the filesystem yourself, use the <code>cd</code> command:</p>
+<p><code>cd</code></p>
+<p>will take you to the directory of your choice (<em>cd</em> stands for <em>change directory</em>.</p>
+<p>If you get confused,</p>
+<p><code>pwd</code></p>
+<p>will always tell you where you (<em>pwd</em> stands for <em>print working directory</em>). Also,</p>
+<p><code>cd</code></p>
+<p>with no options or parameters, will take you back to your own home directory, where things are safe and cosy.</p>
+<p>Finally,</p>
+<p><code>cd ..</code></p>
+<p>will take you up one level, getting you one level closer to the <em>/</em> root directory. If you are in <em>/usr/share/wallpapers</em> and run <code>cd ..</code>, you will move up to <em>/usr/share</em>.</p>
+<p>To see what a directory contains, use</p>
+<p><code>ls</code></p>
+<p>or simply</p>
+<p><code>ls</code></p>
+<p>to list the contents of the directory you are in right now.</p>
+<p>And, of course, you always have <code>tree</code> to get an overview of what lays within a directory. Try it on <em>/usr/share</em> — there is a lot of interesting stuff in there.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Although there are minor differences between Linux distributions, the layout for their filesystems are mercifully similar. So much so that you could say: once you know one, you know them all. And the best way to know the filesystem is to explore it. So go forth with <code>tree</code>, <code>ls</code>, and <code>cd</code> into uncharted territory.</p>
+<p>You cannot damage your filesystem just by looking at it, so move from one directory to another and take a look around. Soon you’ll discover that the Linux filesystem and how it is laid out really makes a lot of sense, and you will intuitively know where to find apps, documentation, and other resources.</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../aur/" class="md-footer__link md-footer__link--prev" aria-label="Previous: A Beginner&#39;s Guide to the Arch User Repository" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              A Beginner's Guide to the Arch User Repository
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../p2/intro/" class="md-footer__link md-footer__link--next" aria-label="Next: Introduction" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Introduction
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © The Calinix Project 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.22074ed6.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.960e086b.min.js"></script>
+      
+    
+  </body>
+</html>
